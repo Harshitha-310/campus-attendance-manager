@@ -337,7 +337,7 @@ Feel free to fork the repository and submit a pull request.
 
 Computer Engineering Student
 
-GitHub: https://github.com/YOUR_GITHUB_USERNAME
+GitHub: https://github.com/Harshitha-310
 
 ---
 
