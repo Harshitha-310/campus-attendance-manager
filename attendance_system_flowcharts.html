@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Attendance System — Project Flowcharts</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 32px;
+  }
+  h1 {
+    font-size: 24px; font-weight: 700;
+    color: #60a5fa; margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 13px; color: #64748b; margin-bottom: 40px;
+  }
+  .section {
+    margin-bottom: 60px;
+  }
+  .section-title {
+    font-size: 16px; font-weight: 700;
+    color: #f1f5f9; margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1e293b;
+  }
+  .section-sub {
+    font-size: 12px; color: #64748b; margin-bottom: 24px;
+  }
+  .flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .node {
+    border-radius: 10px;
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 320px;
+    max-width: 480px;
+  }
+  .node-sub {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-top: 3px;
+  }
+  .node-gray   { background:#1e293b; border:1px solid #334155; color:#e2e8f0; }
+  .node-blue   { background:#1e3a5f; border:1px solid #2563eb; color:#93c5fd; }
+  .node-teal   { background:#0d3330; border:1px solid #0d9488; color:#5eead4; }
+  .node-purple { background:#2d1d5e; border:1px solid #7c3aed; color:#c4b5fd; }
+  .node-amber  { background:#3d2a00; border:1px solid #d97706; color:#fcd34d; }
+  .node-green  { background:#0d3320; border:1px solid #16a34a; color:#86efac; }
+  .node-red    { background:#3d0d0d; border:1px solid #dc2626; color:#fca5a5; }
+  .node-pink   { background:#3d1030; border:1px solid #db2777; color:#f9a8d4; }
+  .arrow {
+    width: 2px;
+    height: 28px;
+    background: #334155;
+    position: relative;
+    margin: 0 auto;
+  }
+  .arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #334155;
+  }
+  .arrow-label {
+    font-size: 11px;
+    color: #64748b;
+    margin: 2px 0;
+    text-align: center;
+  }
+  .decision-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+    justify-content: center;
+  }
+  .decision-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .branch-label {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+  }
+  .branch-yes { background: rgba(34,197,94,0.15); color: #86efac; }
+  .branch-no  { background: rgba(239,68,68,0.15);  color: #fca5a5; }
+  .legend {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-top: 20px; font-size: 12px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .legend-dot {
+    width: 12px; height: 12px; border-radius: 3px;
+  }
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: #1e293b;
+    margin: 40px 0;
+  }
+  .trigger-box {
+    border: 2px dashed #d97706;
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
+    max-width: 540px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .trigger-label {
+    font-size: 10px;
+    font-weight: 800;
+    color: #fcd34d;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+</style>
+</head>
+<body>
+
+<h1>Student Attendance Management System</h1>
+<div class="subtitle">Complete project flowcharts — System Setup · Attendance Marking · Report Generation</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FLOWCHART 1: SYSTEM SETUP -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Flowchart 1 — System Setup Flow</div>
+  <div class="section-sub">Admin must complete setup in this exact order. Each step depends on the previous one due to foreign key constraints in Oracle.</div>
+
+  <div class="flow">
+    <div class="node node-gray">Admin logs into system<div class="node-sub">Role: admin — full access to all setup pages</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-purple">Create Departments<div class="node-sub">CSE, IT, ECE, ME, CE — foundation of everything</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-purple">Add Professors<div class="node-sub">Assign to department, mark is_coordinator = Y/N</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-teal">Create Courses<div class="node-sub">DBMS, DS, OS etc. — linked to department</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-teal">Create Batches<div class="node-sub">Batch-A-2024 under each course (1 course → many batches)</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-teal">Create Sections<div class="node-sub">S1, S2 under each batch — assign coordinator professor</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">Create Slots<div class="node-sub">Slot 1 = 09:00–09:50, Slot 2 = 10:00–10:50 etc.</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-amber">Register Students<div class="node-sub">Add student_id, name, branch, semester, dept — calls register_student()</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-amber">Enroll Students<div class="node-sub">Link student → course → section — creates REGISTRATION row</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-green">System Ready for Attendance<div class="node-sub">All entities exist. Professors can now mark attendance.</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>People setup (departments, professors)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#0d9488"></div>Academic structure (courses, batches, sections)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2563eb"></div>Time setup (slots)</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>Student data</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div>System ready</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FLOWCHART 2: ATTENDANCE MARKING -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Flowchart 2 — Attendance Marking Flow (with Triggers)</div>
+  <div class="section-sub">Core transaction of the system. Two triggers fire automatically — one before insert (validation) and one after insert (monitoring).</div>
+
+  <div class="flow">
+    <div class="node node-gray">Professor selects section, slot, date<div class="node-sub">UI auto-shows: course name, department, coordinator</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">Load Students button clicked<div class="node-sub">GET /api/sections/{id}/students → query joins student + registration</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">Professor marks P or A for each student<div class="node-sub">Default is P. Click to toggle. All Present / All Absent shortcuts.</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">Submit Attendance clicked<div class="node-sub">POST /api/attendance/mark-bulk → calls attendance_pkg.mark_attendance()</div></div>
+    <div class="arrow"></div>
+
+    <div class="trigger-box">
+      <div class="trigger-label">Oracle Trigger 1: prevent_dup_attendance — BEFORE INSERT</div>
+      <div class="node node-amber" style="min-width:0;margin:0 auto">Check 1: Is student registered in this section?<div class="node-sub">SELECT COUNT(*) FROM registration WHERE student_id = :NEW.student_id AND section_id = :NEW.section_id</div></div>
+    </div>
+    <div class="arrow"></div>
+
+    <div class="decision-row">
+      <div class="decision-branch">
+        <div class="branch-label branch-no">NO — not registered</div>
+        <div class="node node-red" style="min-width:220px">RAISE_APPLICATION_ERROR(-20001)<div class="node-sub">INSERT blocked. Error sent to frontend.</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">YES — registered</div>
+        <div class="node node-amber" style="min-width:280px">Check 2: Already marked today?<div class="node-sub">Same student + section + slot + date already in table?</div></div>
+        <div style="display:flex;gap:16px;margin-top:8px">
+          <div class="decision-branch">
+            <div class="branch-label branch-yes">YES — duplicate</div>
+            <div class="node node-red" style="min-width:200px">RAISE_APPLICATION_ERROR(-20002)<div class="node-sub">INSERT blocked.</div></div>
+          </div>
+          <div class="decision-branch">
+            <div class="branch-label branch-no">NO — new record</div>
+            <div class="node node-green" style="min-width:200px">INSERT succeeds<div class="node-sub">Attendance row written to DB</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow" style="margin-top:16px"></div>
+
+    <div class="trigger-box">
+      <div class="trigger-label">Oracle Trigger 2: check_attendance_eligibility — AFTER INSERT</div>
+      <div class="node node-purple" style="min-width:0;margin:0 auto">Calculate attendance % for student in section<div class="node-sub">COUNT total rows, SUM where status='P', compute ROUND(present/total×100, 2)</div></div>
+    </div>
+    <div class="arrow"></div>
+
+    <div class="decision-row">
+      <div class="decision-branch">
+        <div class="branch-label branch-no">pct &lt; 75%</div>
+        <div class="node node-red" style="min-width:200px">Log WARNING<div class="node-sub">Insert row into ATTENDANCE_LOG with action_taken = 'WARNING: ...'</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">pct ≥ 75%</div>
+        <div class="node node-green" style="min-width:200px">Log OK<div class="node-sub">Insert row into ATTENDANCE_LOG with action_taken = 'OK: ...'</div></div>
+      </div>
+    </div>
+
+    <div class="arrow" style="margin-top:16px"></div>
+    <div class="node node-green">React shows success toast<div class="node-sub">All student records processed. Errors shown if any row failed.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FLOWCHART 3: REPORT GENERATION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Flowchart 3 — Report Generation Flow</div>
+  <div class="section-sub">Three types of reports — by section, by student, or all. Each path queries the same underlying joined tables.</div>
+
+  <div class="flow">
+    <div class="node node-gray">User opens Reports page<div class="node-sub">Admin or Professor role — students see My Attendance instead</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">Select report type<div class="node-sub">All Students · By Section · By Student</div></div>
+    <div class="arrow"></div>
+
+    <div class="decision-row">
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">All Students</div>
+        <div class="node node-teal" style="min-width:180px">GET /reports/all<div class="node-sub">Join: student + dept + registration + course + section + professor + attendance</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">By Section</div>
+        <div class="node node-teal" style="min-width:180px">GET /reports/section/{id}<div class="node-sub">Same joins filtered by section_id</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">By Student</div>
+        <div class="node node-teal" style="min-width:180px">GET /reports/student/{id}<div class="node-sub">Same joins filtered by student_id</div></div>
+      </div>
+    </div>
+
+    <div class="arrow" style="margin-top:16px"></div>
+
+    <div class="node node-purple">Oracle calculates per row<div class="node-sub">COUNT(att_date) = total · SUM(P) = present · ROUND(present/total×100,2) = pct</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-purple">CASE statement determines eligibility<div class="node-sub">pct ≥ 75 → ELIGIBLE · pct &lt; 75 → NOT ELIGIBLE</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">React renders table<div class="node-sub">Student · Dept · Course · Section · Coordinator · Total · Present · % · Status</div></div>
+    <div class="arrow"></div>
+
+    <div class="decision-row">
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">Click View Dates</div>
+        <div class="node node-amber" style="min-width:200px">Date-wise modal opens<div class="node-sub">GET /attendance/datewise?student_id=&amp;section_id= Shows each date + slot with P/A pill</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">Click Export CSV</div>
+        <div class="node node-green" style="min-width:200px">CSV downloaded<div class="node-sub">Browser creates Blob from filtered table data. Auto-downloads file.</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">Dashboard charts</div>
+        <div class="node node-pink" style="min-width:200px">Bar + Pie charts update<div class="node-sub">Filter by course or section. Green bars = eligible, red = not eligible.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- FLOWCHART 4: FULL SYSTEM LOGIC SUMMARY -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Flowchart 4 — Complete System Logic (one view)</div>
+  <div class="section-sub">End-to-end flow from login to report — the entire project in one diagram.</div>
+
+  <div class="flow">
+    <div class="node node-gray">User opens browser → localhost:5173</div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">Login page — enter username + password<div class="node-sub">POST /api/auth/login → SHA-256 hash compared → token generated</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-purple">Token stored in localStorage<div class="node-sub">Every API call sends Authorization: Bearer {token}</div></div>
+    <div class="arrow"></div>
+
+    <div class="decision-row">
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">Role: admin</div>
+        <div class="node node-blue" style="min-width:160px">Full access<div class="node-sub">All 13 nav items visible</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">Role: professor</div>
+        <div class="node node-teal" style="min-width:160px">Partial access<div class="node-sub">Dashboard, Attendance, Reports</div></div>
+      </div>
+      <div class="decision-branch">
+        <div class="branch-label branch-yes">Role: student</div>
+        <div class="node node-amber" style="min-width:160px">Own data only<div class="node-sub">Dashboard + My Attendance</div></div>
+      </div>
+    </div>
+
+    <div class="arrow" style="margin-top:16px"></div>
+
+    <div class="node node-teal">Admin completes setup<div class="node-sub">Dept → Professor → Course → Batch → Section → Slot → Student → Enrollment</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-blue">Professor marks attendance<div class="node-sub">Select section + slot + date → mark P/A → submit</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-amber">Two Oracle triggers fire automatically<div class="node-sub">Trigger 1: blocks invalid inserts · Trigger 2: logs eligibility status</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-purple">PL/SQL Package processes data<div class="node-sub">attendance_pkg.mark_attendance() → INSERT → triggers fire → ATTENDANCE_LOG updated</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-green">Reports available instantly<div class="node-sub">Section report · Student report · CSV export · Date-wise view · Charts</div></div>
+    <div class="arrow"></div>
+
+    <div class="node node-gray">Student logs in → sees own attendance %<div class="node-sub">My Attendance page shows all courses, present count, eligibility</div></div>
+  </div>
+</div>
+
+<div style="margin-top:40px;padding:20px;background:#0d1829;border-radius:12px;border:1px solid #1e293b;font-size:12px;color:#64748b;">
+  <div style="font-weight:700;color:#94a3b8;margin-bottom:8px;">Project Stack</div>
+  Oracle 21c XE &nbsp;·&nbsp; PL/SQL Package: attendance_pkg &nbsp;·&nbsp;
+  2 Triggers &nbsp;·&nbsp; Python 3 + FastAPI &nbsp;·&nbsp; React 18 + Vite &nbsp;·&nbsp;
+  13 Oracle tables &nbsp;·&nbsp; 1NF · 2NF · 3NF · BCNF compliant
+</div>
+
+</body>
+</html>

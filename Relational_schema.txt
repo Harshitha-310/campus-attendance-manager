@@ -1,0 +1,95 @@
+DEPARTMENT(
+    dept_id      PRIMARY KEY,
+    dept_name    NOT NULL,
+    dept_code    UNIQUE NOT NULL
+)
+
+PROFESSOR(
+    prof_id      PRIMARY KEY,
+    prof_name    NOT NULL,
+    email,
+    phone,
+    dept_id      FOREIGN KEY REFERENCES DEPARTMENT(dept_id)
+)
+
+COURSE(
+    course_id    PRIMARY KEY,
+    course_name  NOT NULL,
+    credits,
+    dept_id      FOREIGN KEY REFERENCES DEPARTMENT(dept_id)
+)
+
+COURSE_PROFESSOR(
+    cp_id      PRIMARY KEY,
+    course_id  FOREIGN KEY REFERENCES COURSE(course_id),
+    prof_id    FOREIGN KEY REFERENCES PROFESSOR(prof_id),
+    UNIQUE(course_id, prof_id)
+)
+
+BATCH(
+    batch_id     PRIMARY KEY,
+    batch_name,
+    course_id    FOREIGN KEY REFERENCES COURSE(course_id)
+)
+
+SECTION(
+    section_id      PRIMARY KEY,
+    section_name,
+    batch_id        FOREIGN KEY REFERENCES BATCH(batch_id),
+    coord_prof_id   FOREIGN KEY REFERENCES PROFESSOR(prof_id)
+)
+
+STUDENT(
+    student_id   PRIMARY KEY,
+    student_name NOT NULL,
+    semester,
+    email,
+    phone,
+    dept_id      FOREIGN KEY REFERENCES DEPARTMENT(dept_id)
+)
+
+REGISTRATION(
+    reg_id      PRIMARY KEY,
+    student_id  FOREIGN KEY REFERENCES STUDENT(student_id),
+    course_id   FOREIGN KEY REFERENCES COURSE(course_id),
+    section_id  FOREIGN KEY REFERENCES SECTION(section_id),
+    reg_date
+)
+
+SLOT(
+    slot_id     PRIMARY KEY,
+    slot_number,
+    start_time,
+    end_time
+)
+
+ATTENDANCE(
+    student_id   FOREIGN KEY REFERENCES STUDENT(student_id),
+    section_id   FOREIGN KEY REFERENCES SECTION(section_id),
+    slot_id      FOREIGN KEY REFERENCES SLOT(slot_id),
+    att_date,
+    status,
+
+PRIMARY KEY(student_id, section_id, slot_id, att_date)
+)
+
+APP_USERS(
+    user_id        PRIMARY KEY,
+    username       UNIQUE NOT NULL,
+    password_hash  NOT NULL,
+    role           CHECK(role IN ('admin','professor','student')),
+    ref_id,
+    full_name,
+    session_token
+)
+
+ATTENDANCE_LOG (
+    log_id        PK,
+    student_id    FK → ATTENDANCE,
+    section_id    FK → ATTENDANCE,
+    log_date,
+    old_status,
+    new_status,
+    att_pct,
+    action_taken
+)
